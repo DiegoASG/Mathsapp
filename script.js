@@ -61,7 +61,7 @@ function init(){
 
 
           for (var i = 0; i < tablas.length; i++) {
-            ejemplos.push(`${numero} times ${tablas[i]} equals`);
+            ejemplos.push(`${numero} times ${tablas[i]} equals?`);
             respuestas.push(numero * tablas[i]);
           }
 
