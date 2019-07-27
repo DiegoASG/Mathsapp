@@ -1,0 +1,37 @@
+html{
+  box-sizing: border-box;
+  font-size: 1.8em;
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+}
+h1{
+  text-transform: uppercase;
+  text-align: center;
+}
+.contenedor-general{
+  text-align: center;
+}
+
+@media only screen and (max-width:768px){
+
+}
+input{
+  font-size: 17px;
+  padding: 17px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+button{
+  padding: 15px 30px;
+  background-color: navy;
+  border-radius: 5px;
+border: none;
+}
+body{
+  margin: 0 auto;
+  max-width: 100%;
+}
+#elegirNivel:focus{
+
+}
