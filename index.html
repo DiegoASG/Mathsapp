@@ -1,31 +1,87 @@
-<!DOCTYPE h
-tml>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en">	
+	<?php
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package My_Portfolio
+ */
+
+get_header();
+?>
     <head>
 
         <meta charset="UTF-8">
-        <link rel="scripts" href="script.js">
-        <title>learn Maths</title>
-        <link rel="stylesheet" href="styles.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Learn maths</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<style>
+			.site-branding{
+				display: none;
+			}
+			.menu-sitio{display:none;}
+html{
+  box-sizing: border-box;
+  font-size: 1.8em;
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+}
+h1{
+  text-transform: uppercase;
+  text-align: center;
+}
+.contenedor-general{
+  text-align: center;
+}
+
+@media only screen and (max-width:768px){
+
+}
+input{
+  font-size: 17px;
+  padding: 17px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+button{
+  padding: 15px 30px;
+  background-color: navy;
+  border-radius: 5px;
+border: none;
+}
+body{
+  margin: 0 auto;
+  max-width: 100%;
+}
+#elegirNivel:focus{
+
+}
+
+
+		</style>
 
 
     </head>
-
-    <body>
-      <div class="contenedor-general">
+	<body>
+ <div class="contenedor-general">
 
         <h1>Learn Maths</h1>
         <div class="acomodar-nivel">
-          <h2>Choose your number and range</h2>
-          <input id="elegirNivel" type="number" name="nivel" value="" placeholder="Number" required>
-          <input id="elegirRango" type="number" name="rango" value="10">
+          <h2>Choose your level</h2>
+          <input id="elegirNivel" type="number" name="nivel" value="" required>
           <button id="setter"type="submit" name="button" required></button>
-          <h3>You are practicing the table of <span class="tabla-actual">0</span> </h3>
+          <h3>You are on level <span class="tabla-actual">3</span> </h3>
         </div>
         <div class="preguntas">
-          <p class="texto-preguntas"> <span class="numero1"></span></p>
+          <p class="texto-preguntas"> <span class="numero1"> 2</span> times <span class="numero2">2</span> equals ?</p>
           <input id="respuesta" type="number" name="respuesta" value="">
           <button id="respuesta-button" type="button" name="button" required></button>
         </div>
@@ -33,11 +89,122 @@ tml>
       </div>
 
     </body>
-    <footer>
-      <script src="script.js">
+	
+	<footer>
+	
+        <script type="text/javascript">
 
-      </script>
+////////////////////////////////////
+/////////// Aplicacion  ////////////
 
-    </footer>
 
+// generar numeros que no pasen del nivel actual
+   var i = 0;
+   var datos;
+   // Preguntar que tablas se esta aprendiendo
+   var nivel = document.getElementById('elegirNivel').value;
+   var respuestUser = document.getElementById('respuesta').value;
+
+   function getNivel(){
+      nivel = document.getElementById('elegirNivel').value;
+
+      upadateNivel();
+      document.getElementById('respuesta').focus();
+      init();
+   }
+      document.getElementById('setter').addEventListener('click',getNivel);
+      document.getElementById('elegirNivel').addEventListener('keypress', function(event){
+          if(event.keyCode === 13 || event.which === 13){
+            getNivel();
+          }
+
+      });
+      document.getElementById('respuesta-button').addEventListener('click',evaluateAnswer);
+      document.getElementById('respuesta').addEventListener('keypress', function(event){
+          if(event.keyCode === 13 || event.which === 13){
+            evaluateAnswer();
+          }
+        });
+
+
+      function upadateNivel(){
+        document.querySelector('span.tabla-actual').textContent = nivel;
+      }
+function init(){
+
+
+
+
+function generarNumeros(nivel){
+
+var alea1 = Math.round(Math.random() * nivel);
+var alea2 = Math.round(Math.random() * nivel);
+document.querySelector('span.numero1').textContent = alea1;
+document.querySelector('span.numero2').textContent = alea2;
+return {
+
+
+  respuesta: (alea1 * alea2)
+    }
+}
+
+// hacer preguntas de las tablas
+datos = generarNumeros(nivel);
+}
+
+
+function evaluateAnswer(){
+respuestUser = document.getElementById('respuesta').value;
+
+// revisar si la respuesta es correcta
+if(respuestUser == datos.respuesta){
+ i = i + 1;
+	         document.getElementById('respuesta').focus();
+ alert('Well done!!!');
+
+      document.getElementById('respuesta').value ='';
+ if(i < 10){
+
+   getNivel();
+
+   document.getElementById('respuesta').focus();
+   init();
+
+}else{
+    alert('You have finished!!!!');
+}
+}else if(respuestUser == 'salir'){
+alert('You have left');
+
+}else{
+  alert('That is not the correct answer');
+  getNivel();
+        document.getElementById('respuesta').focus();
+  init();
+}
+}
+
+
+
+
+
+//init();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+
+        </script>
+	</footer>
 </html>
