@@ -1,3 +1,4 @@
+
 html{
   box-sizing: border-box;
   font-size: 1.8em;
@@ -27,11 +28,36 @@ button{
   background-color: navy;
   border-radius: 5px;
 border: none;
+margin: 6px;
 }
 body{
   margin: 0 auto;
   max-width: 100%;
 }
-#elegirNivel:focus{
+@media only screen and (max-width:786px){
+    input{
+    float: left;
+  }
+  input{
+    margin: 10px;
+    position: relative;
 
+  }
+  .contenedor{
+    position: relative;
+  }
+  button{
+    padding: 30px 60px;
+    border-radius: 13px;
+    right: 0;
+    position: absolute;
+    top: 50%;
+
+
+
+  }
+  .input2 input{}
+}
+.clear{
+  clear: both;
 }
